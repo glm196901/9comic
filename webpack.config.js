@@ -1,32 +1,94 @@
-const path = require('path');
-const WebpackBar = require('webpackbar');
-//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-//const postcssPx2rem = require('postcss-px2rem');
-//const ExtractTextPlugin = require('extract-text-webpack-plugin'); 
+const { resolve } = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const PostcssPresetEnv = require("postcss-preset-env");
+const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
+// 设置环境变量
+process.env.NODE_ENV = "develepment";
+// process.env.NODE_ENV = 'production'
+
 module.exports = {
-  // JavaScript 执行入口文件
-  entry: './main.js',
+  entry: "./src/index.js",
   output: {
-    // 把所有依赖的模块合并输出到一个 bundle.js 文件
-    filename: 'bundle.js',
-    // 输出文件都放到 dist 目录下
-    path: path.resolve(__dirname, './build'),
+    filename: "index.js",
+    path: resolve(__dirname, "build"),
   },
-  module:{
-    rules:[
-     {
-    	// 用正则去匹配要用该 loader 转换的 CSS 文件
-      	test:/\.css$/,
-      	use:['style-loader','css-loader']
-     }
-   ],
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        options: {
+          presets: ['@babel/preset-env'],
+        },
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader",
+        options: {
+          fix: true,
+        },
+      },
+      {
+        test: /\.less$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: "postcss",
+              plugins: () => [PostcssPresetEnv()],
+              name: "main_[hash:10].[ext]",
+            },
+          },
+        ],
+      },
+
+      {
+        test: /\.(jpg|png|gif|svg)$/,
+        loader: "url-loader",
+        options: {
+          // 资源8~12kb
+          limit: 8 * 1024,
+          esModule: false,
+          name: "static_[hash:10].[ext]", // 原拓展名
+        },
+      },
+      {
+        test: /\.html$/, // 引入img标签解释，url-loader处理
+        loader: "html-loader",
+      },
+      {
+        exclude: /\.(js|html|css|less|jpg|png|gif|svg)/,
+        loader: "file-loader",
+        options: {
+          name: "[hash:10].[ext]",
+        },
+      },
+    ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "src/index.html",
+    }),
+    new MiniCssExtractPlugin({
+      filename: "css/index.css",
+    }),
+    new OptimizeCssAssetsWebpackPlugin(),
+  ],
+  mode: "development",
+  // devServer
   devServer: {
-    host:"localhost",
-    port:9900,
-    hot:true,
-    open:true,
-    quiet: true,
+    contentBase: resolve(__dirname, "build"),
+    compress: true,
+    open: true,
+    port: 3333,
   },
 };
-
