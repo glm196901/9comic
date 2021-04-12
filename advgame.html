@@ -1,0 +1,151 @@
+<?
+$new=$empire->fetch1("select id from {$dbtbpre}ecms_chapter where comic='$navinfor[id]' order by sequence asc,newstime asc limit 1");
+if ($new[id]){
+$url='/view/'.$new[id].'.html';
+}else{
+$url='#';
+}
+$tcarr=explode(",",$public_r['add_ticai']);
+$ticai=explode("|",$navinfor[ticai]);
+for($i=0;$i<count($ticai);$i++)
+{
+if(empty($ticai[$i])){continue;}
+$tc.='<a href="/cate/?type='.$ticai[$i].'" class="tag blueTag">'.$tcarr[($ticai[$i]-1)].'</a>';
+}
+?>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#ffffff">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="apple-mobile-web-app-title" content="<?=$public_r[sitename]?>"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="White"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<link rel="apple-touch-icon" href="/icon/favicon.png"/>
+<link rel="shortcut icon" type="image/x-icon" href="/icon/favicon.ico">
+  <meta name="keywords" content="[!--title--],免费看[!--title--]的网站,[!--title--]韩漫,[!--title--]污漫,[!--title--]完整版,[!--title--]无码无遮盖,[!--title--]最新话,[!--title--]全集" />
+  <meta name="description" content="欢迎阅读《[!--title--]》韩国污漫完整版，本站提供免费看[!--title--]全集，[!--title--]无码无遮盖，连载更新[!--title--]最新话，[!--title--]正版等"/>
+  <meta property="og:url" content="<?=$public_r['add_www']?>/comic/[!--id--]"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="《[!--title--]》韩国污漫完整正版，[!--title--]无码无遮盖，连载更新[!--title--]最新话，[!--title--]全集,免费看[!--title--]的网站"/>
+  <meta property="og:description" content="欢迎阅读《[!--title--]》韩国污漫完整版，本站提供免费看[!--title--]全集，[!--title--]无码无遮盖，连载更新[!--title--]最新话，[!--title--]正版等"/>
+  <meta property="og:image" content="<?=$public_r['add_file']?>[!--titlepic--]"/>
+  <meta property="og:site_name" content="<?=$public_r[sitename]?>"/> 
+<title>《[!--title--]学》韩国污漫完整正版，[!--title--]无码无遮盖，连载更新[!--title--]最新话，[!--title--]全集,免费看[!--title--]的网站</title>
+
+<link href="/skin/css/base.css?v3=20202" rel="stylesheet" type="text/css">
+<script src="/skin/js/jquery.min.js?v3=2020" type="text/javascript">
+
+</script>
+<style>
+#applink{display:none;}
+.mescroll
+{
+
+height:auto;
+}
+.back01
+{
+top: 15px;
+    background-position: -42px -40px;
+
+}
+.detailBox
+{
+background:none;
+}
+.home{
+    background-position: -22px -40px;
+}
+.obgame{
+
+    background-size: cover;
+    height: 100%;
+}
+#left{
+background: url(/skin/images/obgamebanner.png);
+    background-size: cover;
+}
+.QQcs{
+
+position: fixed;
+    width: 90%;
+    left: 40%;
+    top: 0;
+}
+
+ .qqcs {
+      position: fixed;
+      top: -10px;
+      left: -80px;
+    }
+    .cs1 {
+      width: 120px;
+      height: 35px;
+      position: fixed;
+      top: 188px;
+      left: 140px;
+      cursor: pointer;
+     background:red;
+    }
+
+    .cs2 {
+      width: 120px;
+      height: 35px;
+      position: fixed;
+      top: 235px;
+      left: 140px;
+      cursor: pointer;
+     background:red;
+
+
+
+    }
+
+    .cs3 {
+      width: 120px;
+      height: 35px;
+      position: fixed;
+      top: 285px;
+      left: 140px;
+      cursor: pointer;
+
+     background:red;
+
+    }
+</style>
+</head>
+<body>
+<div id="mescroll" class="mescroll">
+	<div class="clearfix">
+        </div>
+	<main id="left">
+	<section class="detailBox">
+		<div class="detailtop">
+		<a href="javascript:history.go(-1);" class="back01"></a>
+		<a href="/fav" class="mybooks01">书架</a>
+		<a href="/index.php" class="home"></a>
+         </section>
+         </main>
+  
+</div>
+   <div class="qqcs">
+      <a class="cs1" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1523204151&site=qq&menu=yes"></a>  
+      <a class="cs2" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3326767420&site=qq&menu=yes"></a>    
+      <a class="cs3" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1736044797&site=qq&menu=yes"></a>    
+    </div>
+   <img  class="QQcs" src="/skin/images/QQcs.png" alt="">
+<a href="https://ob150.club">
+<img class="obgame"  src="/skin/images/obgame.jpeg"  />
+</a>
+
+</body>
+<script>
+
+</script>
+</html>

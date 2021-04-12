@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#ffffff">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="apple-mobile-web-app-title" content="<?=$public_r[sitename]?>"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="White"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<link rel="apple-touch-icon" href="/icon/favicon.png"/>
+<link rel="shortcut icon" type="image/x-icon" href="/icon/favicon.ico">
+<meta name="keywords" content="[!--pagekey--]" />
+<meta name="description" content="<?=$public_r[sitename]?>：[!--pagedes--]"/>
+<meta property="og:url" content="<?=$public_r['add_www']?>/index.php"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="<?=$public_r[sitename]?>::<?=$public_r['add_title']?>"/>
+<meta property="og:description" content="<?=$public_r[sitename]?>：[!--pagedes--]"/>
+<meta property="og:image" content="/icon/favicon.png"/>
+<meta property="og:site_name" content="<?=$public_r[sitename]?>"/> 
+<title><?=$public_r[sitename]?>::<?=$public_r['add_title']?></title>
+<link href="/skin/css/swiper.min.css?v3=2020" rel="stylesheet" type="text/css">
+<link href="/skin/css/base.css?v3=20200204" rel="stylesheet" type="text/css">
+<script src="/skin/js/jquery.min.js?v3=2020" type="text/javascript"></script>
+<script type="text/javascript">var u=navigator.userAgent,app=navigator.appVersion;-1<u.indexOf("Html5Plus")?document.writeln(""):/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)?$(document).ready(function(){$(".app a").click(function(){balert()})}):(/(Android)/i.test(navigator.userAgent)?setTimeout(function(){talert()},3E3):window.frames.length!=parent.frames.length||(window.location.href="/default.php"),$(document).ready(function(){$(".app a").click(function(){window.open("<?=$public_r['add_fabu']?>")})}));
+</script>
+</head>
+<body class="index"> 
+<div id="mescroll" class="mescroll">
+	<div class="clearfix"></div>
+	<main id="right">
+	<header>
+	<section class="tophead clf">
+	<div id="headerbox">
+			<a href="/index.php" class="logo" id="waplink"></a>		<div class="tabBtn">
+			<span>
+			<a href="/index.php" class="on" id="waplink">推荐</a>			
+                        <a href="/cate/?status=even">连载</a>
+			 <a href="/top">热门</a>
+			</span>
+		</div>
+		<a class="tsign" href="/e/member/sign/">&nbsp;</a>
+	</div>
+	</section>
+	<div class="clearfix"></div>
+	<section id="floatSo" class="block indexso">
+	<div id="searchbox" class="clf">
+		<form action="/e/search/" method="post" name="searchform" id="searchform">
+			<input type="hidden" name="show" value="title,author,body"/>
+			<input type="hidden" name="tbname" value="comic"/>
+			<input type="hidden" name="tempid" value="1"/>
+			<input type="text" class="fl searchInput" name="keyboard" value="" placeholder="搜一下，千本无码韩漫满足你的欲望"/>
+			<a class="cancleBtn" id="cancleBtn">x</a>
+		</form>
+	</div>
+	</section>
+	</header>
+
+	<div class="clearfix floatSo">
+	</div>
+	<div class="ht120"></div>
+	<div class="clearfix"></div>
+	<section class="focusbox bt5" style="background:#fff">
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+[e:loop={1,8,1,1,"focus<>' ' "}]
+
+ <div class="swiper-slide"><a href="/comic/<?=$bqr['id']?>"><img  src="<?=$public_r['add_file'].$bqr['focus']?>" width="100%" height="100%"></a></div>
+
+[/e:loop]
+
+	<div class="swiper-pagination"></div>
+	</div>
+	</div>
+	</section>
+
+
+
+</section>
+
+
+
+
+
+	<div class="clearfix"></div>
+	<section class="block" style="padding:10px 0 4px;">
+	<ul class="btnList clf">
+		<li><a href="/cate/?status=end" class="bg03"></a>完本</li>
+		<li><a href="/cate/?status=even" class="bg01"></a>连载</li>
+		<li><a href="/top/" class="bg05"></a>热榜</li>
+		<li><a href="/e/member/buygroup/" class="bg04"></a><b class="red">首充双倍</b></li>
+		<li class="app"><a href="https://9comic.club/" class="bg08"></a>APP下载</li>
+	</ul>
+		<div class="clearfix"></div>
+		<div class='alarm' id="btnCopy" data-clipboard-text="<?=$public_r['add_fabu']?>"><?=$public_r['add_tishi']?><?=$public_r['add_analytics']?>| </div>
+	</section>
+	<div class="clearfix"></div>
+	<section class="showaddiv">
+	<a href="/help/"><img src="/skin/images/help.png"/> </a>
+	</section>
+	<div class="clearfix"></div>
+		<section class="block">
+	<div class="titleBar clf">
+		<i class="fl"><span>每日</span>发布<font>今日更新<b class="red"><?=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_comic where lastdotime>UNIX_TIMESTAMP()-24*3600")?></b>话，一周新作<b class="red"><?=$empire->gettotal("select count(*) as total from {$dbtbpre}ecms_comic where newstime>UNIX_TIMESTAMP()-86400*7")?></b>本</font></i><a href="/cate/?order=last" class="more">More</a>
+	</div>
+	<div class="book_list clf">
+	 <div id="clearfix"></div>
+[e:loop={1,6,0,0,'','lastdotime desc'}]
+<?
+$zjnum=$bqr[zt];
+if ($bqr[status]==1){
+$up='连载';
+$LChapter=user_week($bqr[week]).'  第'.$zjnum.'话';
+}else{
+$up='完结';
+$LChapter='全集 | 第'.$zjnum.'话';
+}
+if ($bqr['reader']==2){
+$age='<b>18+</b>';
+}else{
+$age='';
+}
+$tc='';
+$tcfg='';
+$tcarr=explode(",",$public_r['add_ticai']);
+$ticai=explode("|",$r[ticai]);
+for($m=0;$m<count($ticai);$m++)
+{
+if(!$ticai[$m]){continue;}
+$tc.=$tcfg.$tcarr[($ticai[$m]-1)];
+$tcfg=' / ';
+}
+?>
+	<div class="swiper-slide"><a href="/comic/<?=$bqr['id']?>"><img src="<?=$public_r['add_file'].$bqr['titlepic']?>"><?=$age?><p><label><?=$LChapter?></label><em><?=$up?></em></p></a><span class="booktitle"><?=$bqr['title']?></span><p class="commandDes"><?=$tc?></p></div>
+[/e:loop]
+
+	</div>
+	<a href="/cate/?order=last"  class="morebtn">查看更多</a>
+	</section>
+   <div class="clearfix"></div>
+	<section class="block">
+	<div class="titleBar clf">
+		<i class="fl"><span>免费</span>阅读<font>每周一本全免回馈漫友支持</font></i><a href="/e/member/sign/" class="sign">打卡送阅币</a>
+	</div>
+	<div class="tuijie_list clf">
+[e:loop={1,2,0,0,'','xianmian desc,lastdotime desc'}]
+<?
+if ($bqr[status]==1){
+$up='连载';
+}else{
+$up='完结';
+}
+?>
+<div class="swiper-slide"><a href="/comic/<?=$bqr['id']?>"><img src="<?=$public_r['add_file'].$bqr['cover']?>" style="height:100%;"><?if ($bqr['xianmian']==1){?><sup class="do">限免中</sup><?}else{?><sup class="end">已结束</sup><?}?><p><span><?=$bqr['title']?></span><label><?=$up?></label></p></a></div>
+[/e:loop]
+</div>
+	</section>
+	<div class="clearfix"></div>
+		<section class="block">
+	<div class="titleBar clf">
+		<i class="fl"><span>日漫</span>出版<font>宅家福利，新番推荐</font></i><a href="/cate/?type=9" class="more">More</a>
+	</div>
+		<ul class="book_list clf">
+[e:loop={1,3,0,0,"ticai like '%|9|%'",'lastdotime desc'}]
+<?
+$zjnum=$bqr[zt];
+if ($bqr[status]==1){
+$up='连载';
+$LChapter='第'.$zjnum.'话';
+}else{
+$up='完结';
+$LChapter='第'.$zjnum.'话';
+}
+if ($bqr['reader']==2){
+$age='<b>18+</b>';
+}else{
+$age='';
+}
+$tc='';
+$tcfg='';
+$tcarr=explode(",",$public_r['add_ticai']);
+$ticai=explode("|",$r[ticai]);
+for($m=0;$m<count($ticai);$m++)
+{
+if(!$ticai[$m]){continue;}
+$tc.=$tcfg.$tcarr[($ticai[$m]-1)];
+$tcfg=' / ';
+}
+?>
+<div class="swiper-slide"><a href="/comic/<?=$bqr['id']?>"><img src="<?=$public_r['add_file'].$bqr['titlepic']?>"><?=$age?><p><label><?=$LChapter?></label><i><?=$up?></i></p></a><span class="booktitle"><?=$bqr['title']?></span><p class="commandDes"><?=$tcfg?></p></div>
+[/e:loop]
+</ul>
+			<a href="/cate/?type=9" class="morebtn">查看更多</a>
+	</section>
+	<div class="clearfix"></div>
+	<section class="block">
+	<div class="titleBar clf">
+		<i class="fl"><span>强档</span>推荐<font>精选不可错失的内容</font></i><a href="/cate/?order=digg" class="more">More</a>
+	</div>
+	<div class="ranking_list clf">
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+[e:loop={1,3,0,0,'','diggtop desc'}]
+<?
+$zjnum=$bqr[zt];
+if ($bqr[status]==1){
+$up='连载';
+$LChapter=user_week($bqr[week]).'  第'.$zjnum.'话';
+}else{
+$up='完结';
+$LChapter='全集 | 第'.$zjnum.'话';
+}
+if ($bqr['reader']==2){
+$age='<b>18+</b>';
+}else{
+$age='';
+}
+$tc='';
+$tcfg='';
+$tcarr=explode(",",$public_r['add_ticai']);
+$ticai=explode("|",$r[ticai]);
+for($m=0;$m<count($ticai);$m++)
+{
+if(!$ticai[$m]){continue;}
+$tc.=$tcfg.$tcarr[($ticai[$m]-1)];
+$tcfg=' / ';
+}
+?>
+<div class="swiper-slide"><a href="/comic/<?=$bqr['id']?>" class="fl"><img src="<?=$public_r['add_file'].$bqr['cover']?>"><?=$age?><p><?=$LChapter?></p><span><?=$up?></span></a><div class="fr"><b class="booktitle"><a href="/comic/<?=$bqr['id']?>"><?=$bqr['title']?></a></b><div class="bookdesc"><a href="/comic/<?=$bqr['id']?>"><?=$bqr['body']?></a></div><div class="bookcat clf"><span class="fl wirteIcon"><?=$bqr['author']?></span><span class="fr"><?=$bqno?></span></div></div></div>
+[/e:loop]
+
+</div>
+		</div>
+	</div>
+	</section>
+	<div class="clearfix"></div>
+	<section class="block">
+	<div class="titleBar clf">
+		<i class="fl"><span>漫友</span>最爱<font>10万网友们推荐的漫画</font></i><a href="/cate/?order=fav" class="more">More</a>
+	</div>
+	<div>
+		<ul class="book_list clf">
+[e:loop={1,9,0,0,'','fava desc'}]
+<?
+$zjnum=$bqr[zt];
+if ($bqr[status]==1){
+$up='连载';
+$LChapter=user_week($bqr[week]).'  第'.$zjnum.'话';
+}else{
+$up='完结';
+$LChapter='全集 | 第'.$zjnum.'话';
+}
+if ($bqr['reader']==2){
+$age='<b>18+</b>';
+}else{
+$age='';
+}
+$tc='';
+$tcfg='';
+$tcarr=explode(",",$public_r['add_ticai']);
+$ticai=explode("|",$r[ticai]);
+for($m=0;$m<count($ticai);$m++)
+{
+if(!$ticai[$m]){continue;}
+$tc.=$tcfg.$tcarr[($ticai[$m]-1)];
+$tcfg=' / ';
+}
+?>
+	<div class="swiper-slide"><a href="/comic/<?=$bqr['id']?>"><img src="<?=$public_r['add_file'].$bqr['titlepic']?>"><?=$age?><p><label><?=$LChapter?></label><i><?=$up?></i></p></a><span class="booktitle"><?=$bqr['title']?></span><p class="commandDes"><?=$tc?></p></div>
+[/e:loop]
+		</ul>
+	</div>
+	<a href="/cate/?order=fav" class="morebtn">查看更多</a>
+	</section>
+	<div class="clearfix"></div>
+	<section class="block">
+   <div class="swiper_tab_wrap" id="swiperTabWrap">
+ 	<div class="swiper_tab">
+	<div class="titleBar clf">
+	<i class="fl"><span>榜单</span>排行</i>
+        	<div class="swiper_ul_wrap">
+			  <ul class="swiper_ul">
+				<li><a href="javascript:void(0);" class="active">新作</a></li>
+				<li><a href="javascript:void(0);">畅销</a></li>
+				<li><a href="javascript:void(0);">热门</a></li>
+				<li><a href="javascript:void(0);">推荐</a></li>
+			  </ul>
+		  </div>
+	</div>
+   </div>
+	<div class="comic_list clf">
+	 <div class="swiper-container" id="swiperTabCon">
+            <div class="swiper-wrapper">
+
+				<div class="swiper-slide">
+[e:loop={1,3,0,0,'','id desc'}]
+<?
+$zjnum=$bqr[zt];
+if ($bqr[status]==1){
+$up='连载';
+$LChapter=user_week($bqr[week]).'  第'.$zjnum.'话';
+}else{
+$up='完结';
+$LChapter='全集 | 第'.$zjnum.'话';
+}
+if ($bqr['reader']==2){
+$age='<b>18+</b>';
+}else{
+$age='';
+}
+$tc='';
+$tcfg='';
+$tcarr=explode(",",$public_r['add_ticai']);
+$ticai=explode("|",$r[ticai]);
+for($m=0;$m<count($ticai);$m++)
+{
+if(!$ticai[$m]){continue;}
+$tc.=$tcfg.$tcarr[($ticai[$m]-1)];
+$tcfg=' / ';
+}
+?>
+<div class="bdbox"><a href="/comic/<?=$bqr['id']?>"><img src="<?=$public_r['add_file'].$bqr['titlepic']?>"><b class="px"><?=$bqno?></b><p><label><?=$LChapter?></label><em><?=$up?></em></p></a><span class="booktitle"><?=$bqr['title']?></span><p class="commandDes"><?=$tc?></p></div>
+[/e:loop]
+</div>
+				<div class="swiper-slide">
+
+[e:loop={1,3,0,0,'','fava desc'}]
+<?
+$zjnum=$bqr[zt];
+if ($bqr[status]==1){
+$up='连载';
+$LChapter=user_week($bqr[week]).'  第'.$zjnum.'话';
+}else{
+$up='完结';
+$LChapter='全集 | 第'.$zjnum.'话';
+}
+if ($bqr['reader']==2){
+$age='<b>18+</b>';
+}else{
+$age='';
+}
+$tc='';
+$tcfg='';
+$tcarr=explode(",",$public_r['add_ticai']);
+$ticai=explode("|",$r[ticai]);
+for($m=0;$m<count($ticai);$m++)
+{
+if(!$ticai[$m]){continue;}
+$tc.=$tcfg.$tcarr[($ticai[$m]-1)];
+$tcfg=' / ';
+}
+?>
+<div class="bdbox"><a href="/comic/<?=$bqr['id']?>"><img src="<?=$public_r['add_file'].$bqr['titlepic']?>"><b class="px"><?=$bqno?></b><p><label><?=$LChapter?></label><em><?=$up?></em></p></a><span class="booktitle"><?=$bqr['title']?></span><p class="commandDes"><?=$tc?></p></div>
+[/e:loop]
+</div>
+				<div class="swiper-slide">
+[e:loop={1,3,0,0,'','onclick desc'}]
+<?
+$zjnum=$bqr[zt];
+if ($bqr[status]==1){
+$up='连载';
+$LChapter=user_week($bqr[week]).'  第'.$zjnum.'话';
+}else{
+$up='完结';
+$LChapter='全集 | 第'.$zjnum.'话';
+}
+if ($bqr['reader']==2){
+$age='<b>18+</b>';
+}else{
+$age='';
+}
+$tc='';
+$tcfg='';
+$tcarr=explode(",",$public_r['add_ticai']);
+$ticai=explode("|",$r[ticai]);
+for($m=0;$m<count($ticai);$m++)
+{
+if(!$ticai[$m]){continue;}
+$tc.=$tcfg.$tcarr[($ticai[$m]-1)];
+$tcfg=' / ';
+}
+?>
+<div class="bdbox"><a href="/comic/<?=$bqr['id']?>"><img src="<?=$public_r['add_file'].$bqr['titlepic']?>"><b class="px"><?=$bqno?></b><p><label><?=$LChapter?></label><em><?=$up?></em></p></a><span class="booktitle"><?=$bqr['title']?></span><p class="commandDes"><?=$tc?></p></div>
+[/e:loop]
+</div>
+				<div class="swiper-slide">
+[e:loop={1,3,0,0,'','diggtop desc'}]
+<?
+$zjnum=$bqr[zt];
+if ($bqr[status]==1){
+$up='连载';
+$LChapter=user_week($bqr[week]).'  第'.$zjnum.'话';
+}else{
+$up='完结';
+$LChapter='全集 | 第'.$zjnum.'话';
+}
+if ($bqr['reader']==2){
+$age='<b>18+</b>';
+}else{
+$age='';
+}
+$tc='';
+$tcfg='';
+$tcarr=explode(",",$public_r['add_ticai']);
+$ticai=explode("|",$r[ticai]);
+for($m=0;$m<count($ticai);$m++)
+{
+if(!$ticai[$m]){continue;}
+$tc.=$tcfg.$tcarr[($ticai[$m]-1)];
+$tcfg=' / ';
+}
+?>
+<div class="bdbox"><a href="/comic/<?=$bqr['id']?>"><img src="<?=$public_r['add_file'].$bqr['titlepic']?>"><b class="px"><?=$bqno?></b><p><label><?=$LChapter?></label><em><?=$up?></em></p></a><span class="booktitle"><?=$bqr['title']?></span><p class="commandDes"><?=$tc?></p></div>
+[/e:loop]
+</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<a href="/new/"  class="morebtn">查看更多</a>
+	</section>
+	<div class="clearfix"></div>
+	<section class="showaddiv"> 
+        <a href="/e/member/buygroup/"> <img src="/skin/images/vip.gif" /> </a> 
+</section>	<div class="clearfix"></div>
+	<section class="block">
+	<div class="titleBar wb10 clf">
+		<i class="fl"><span>猜你</span>喜欢<font>大家都在看的热门好漫</font></i><a href="/cate/?order=hot" class="more">More</a>
+	</div>
+	<div class="book_list clf">
+		<div id="dataList" class="data-list"></div>
+	</div>
+	</section>
+	</main>
+</div>
+
+<div class="clearfix"></div>
+<div id="closeob150" 
+  style="
+    position: absolute;
+    margin: auto;
+    max-width: 768px;
+    background: rgba(0,0,0,0.2);
+    z-index: 100;
+    right: 0;
+    width: 6% !important;
+    bottom: 120px !important;
+    text-align: center;
+    color: #fff;
+    "
+>
+    x
+</div>
+<a href="https://ob150.club" id="obfooter" >
+    <img 
+    style="
+    position: fixed;
+    margin: auto;
+    height: 100px;
+    max-width: 768px;
+    background: #f8f8f8;
+    z-index: 9; 
+    width: 100% !important;
+    bottom: 50px !important;
+
+    " id="" src="/skin/images/ob150zxz.gif" alt="" target="_blank" />
+</a>  
+<nav class="footnav clf">
+<a href="/index.php" id="waplink"><span class="m01">推荐</span></a>
+<a href="/cate/" id="cate"><span class="m03">发现</span></a>
+<a href="/new/" id="new"><span class="m02">榜单</span></a>
+<a href="/fav/" id="fav"><span class="m05">书架</span></a>
+<a href="/user/" id="user"><span class="m04">会员</span><i></i></a>
+</nav>
+<div class="clearfix"></div>
+
+<div class="spinner"></div><div class="layer"></div>
+<script src="/skin/js/swiper.min.js?v3=2020" type="text/javascript"></script>
+<script src="/skin/js/mescroll.min.js?v3=2020" type="text/javascript"></script>
+<script src="/skin/js/index.js?v3=20200204" type="text/javascript"></script>
+<script src="/skin/js/so.js?v3=2020" type="text/javascript"></script>
+<script src="/json/so.js?v3=2020" type="text/javascript"></script>
+<script src="/skin/js/tj.js?v3=2020" type="text/javascript"></script>
+<script src="/skin/js/clipboard.min.js?v3=2020"></script>
+<script  type="text/javascript">
+$("#closeob150").click(function(){
+    $("#obfooter").css("display","none")
+     $("#closeob150").css("display","none")
+    
+})
+$(function(){var clipboard=new Clipboard('#btnCopy');clipboard.on('success',function(e){alert('发布页网址复制成功，请在微信或QQ发给自己，再长按网址收藏!')});clipboard.on('error',function(e){prompt("复制失败了,请长按全选输入框复制吧~",'<?=$public_r['add_fabu']?>')})});
+</script> 
+<script src="/skin/js/downapp.js?v3=2020" type="text/javascript"></script>
+<script  type="text/javascript"> 
+
+function talert(){$("body").showbanner({content:"<div class='calert box'><a href='<?=$public_r['add_fabu']?>' target='_blank'><div class='fl'><img src='/icon/favicon.png' /></div><div class='fc'><p class='t1'>海量高品质漫画抢先看</p><p class='t2'>全网更新最快，资源最全</p></div><div class='fr'>下载APP</div></a></div><div class='clearfix'></div><div class='del' id='del'><span></span></div>",position:"top"})};
+setTimeout(function(){$(".post-box").addClass("is-visible")},500);$(".post-box a.close,.post-box .but a").click(function(){$(".post-box").removeClass("is-visible")});
+</script> 
+<?=$public_r['add_gonggao']?>
+</body>
+</html>
